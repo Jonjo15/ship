@@ -6,7 +6,8 @@ const Ship = (length) => {
         return hitArray
     }
     const isSunk = () => hitArray.every(val => val)
-    return {getLength, hit, isSunk}
+    const getHitArray = () => hitArray
+    return {getLength, hit, isSunk, getHitArray}
 }
 
 export default Ship
