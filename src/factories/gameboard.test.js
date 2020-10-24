@@ -1,4 +1,5 @@
 import Gameboard from "./gameboard"
+import Ship from "./ship"
 
 test("Checking if board array is of length 100", () => {
     expect(Gameboard().boardArray.length).toBe(100)
@@ -30,7 +31,7 @@ test("receiveAttack (1)", () => {
 test("receiveAttack (2)", () => {
     let game = Gameboard()
     game.boardArray[0] = "0";
-    game.receiveAttack("0");
+    game.receiveAttack(0);
     expect(game.ships[0].getHitArray()).toStrictEqual([true]);
     expect(game.ships[0].isSunk()).toBe(true)
 })
@@ -43,4 +44,20 @@ test("Missed attacks count(2)", () => {
         game.receiveAttack(i)
     }
     expect(game.getMissedCount()).toBe(10)
+})
+test("is first ship sunk before hitting", () => {
+    expect(Gameboard().ships[0].isSunk()).toBe(false)
+})
+test("All ships sunk(1)", () => {
+    expect(Gameboard().allShipsSunk()).toBe(false)//dovrsiti
+})
+test("All ships sunk(2)", () => {
+    let game = Gameboard()
+    game.ships = [Ship(1)];
+    game.boardArray[0] = "0";
+    game.receiveAttack(0);
+    console.log(game.boardArray)
+    console.log(game.ships[0].getHitArray())
+    // expect(game.ships[0].isSunk()).toBe(true)
+    expect(game.allShipsSunk()).toBe(true)
 })

@@ -30,8 +30,17 @@ const Gameboard = (ai = false) => {
     }
     const setIsHorizontal = (bool) => bool;
     const getMissedCount = () => missedCount
-    const allShipsSunk = () =>{} //dovrsit{}
-    return {boardArray, setIsHorizontal, ships, receiveAttack, getMissedCount}
+    const allShipsSunk = () => {
+        return ships.every(ship => ship.isSunk())
+        // ships.forEach((ship, i) => {
+        //     console.log(!ship.isSunk())
+        //     if (!ship.isSunk()) {
+        //         return false
+        //     }
+        // })
+        // return true
+    }
+    return {boardArray, setIsHorizontal, ships, receiveAttack, getMissedCount, allShipsSunk}
 }
 
 export default Gameboard
