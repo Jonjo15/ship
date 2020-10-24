@@ -9,24 +9,27 @@ const Gameboard = (ai = false) => {
     // second is index of the part of the ship from hitArray
     let isHorizontal = true;
     let boardArray = new Array(100).fill(false)
-    boardArray = boardArray.map((ele, i) => i)
+    // boardArray = boardArray.map((ele, i) => i)
     const receiveAttack = (xy) => {
         if (boardArray[xy] === "miss" || boardArray[xy] === "hit") {
             return
         }
-        if (typeof boardArray[xy] === "number") {
+        if (boardArray[xy] === false) {
             boardArray[xy] = "miss"
             missedCount += 1;
             return false
         }
         else if (typeof boardArray[xy] === "string") {
             let targetShipPart = parseInt(boardArray[xy].slice(-1))
-            let shipTarget = parseInt(boardArray[xy][0])
+            let shipTarget = parseInt(boardArray[xy].slice(0,1))
             let targetedShip = ships[shipTarget]
             targetedShip.hit(targetShipPart);
             boardArray[xy] = "hit"
             return true
         }
+    }
+    const placeShipsRandomly = (horizontal = true) => {
+        
     }
     const setIsHorizontal = (bool) => bool;
     const getMissedCount = () => missedCount

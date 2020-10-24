@@ -4,12 +4,12 @@ import Ship from "./ship"
 test("Checking if board array is of length 100", () => {
     expect(Gameboard().boardArray.length).toBe(100)
 })
-test("Value of array item is equal to its index (1)", () => {
-    expect(Gameboard().boardArray[2]).toBe(2)
-})
-test("Value of array item is equal to its index (2)", () => {
-    expect(Gameboard().boardArray[99]).toBe(99)
-})
+// test("Value of array item is equal to its index (1)", () => {
+//     expect(Gameboard().boardArray[2]).toBe(2)
+// })
+// test("Value of array item is equal to its index (2)", () => {
+//     expect(Gameboard().boardArray[99]).toBe(99)
+// })
 test("There are 5 ships", () => {
     expect(Gameboard().ships.length).toBe(5);
 })
@@ -30,7 +30,7 @@ test("receiveAttack (1)", () => {
 })
 test("receiveAttack (2)", () => {
     let game = Gameboard()
-    game.boardArray[0] = "0";
+    game.boardArray[0] = "00";
     game.receiveAttack(0);
     expect(game.ships[0].getHitArray()).toStrictEqual([true]);
     expect(game.ships[0].isSunk()).toBe(true)
@@ -52,12 +52,25 @@ test("All ships sunk(1)", () => {
     expect(Gameboard().allShipsSunk()).toBe(false)//dovrsiti
 })
 test("All ships sunk(2)", () => {
+    // let game = Gameboard()
+    // game.ships = game.ships[0];
+    // game.boardArray[0] = "00";
+    // game.receiveAttack(0);
+    // 
+    // 
     let game = Gameboard()
-    game.ships = [Ship(1)];
-    game.boardArray[0] = "0";
+    game.boardArray[0] = "00";
     game.receiveAttack(0);
+    game.receiveAttack(22);
+    game.ships.pop();
+    game.ships.pop();
+    game.ships.pop();
+    game.ships.pop();
+    // expect(game.ships[0].getHitArray()).toStrictEqual([true]);
+    // expect(game.ships[0].isSunk()).toBe(true)
+    console.log(game.ships[0])
     console.log(game.boardArray)
     console.log(game.ships[0].getHitArray())
-    // expect(game.ships[0].isSunk()).toBe(true)
+    expect(game.ships[0].isSunk()).toBe(true)
     expect(game.allShipsSunk()).toBe(true)
 })
