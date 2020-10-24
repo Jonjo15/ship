@@ -59,6 +59,11 @@ const Gameboard = (ai = false) => {
            return getHorizontalCoords(length)
         }
     } 
+    const getVerticalCoords = (length) => {
+        let reducer = (length -1)*10
+        let coord = Math.floor(Math.random() * 100 - reducer)
+        //finish
+    }
     const setIsHorizontal = (bool) => bool;
     const getMissedCount = () => missedCount
     const allShipsSunk = () => {
