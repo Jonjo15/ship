@@ -68,9 +68,17 @@ test("All ships sunk(2)", () => {
     game.ships.pop();
     // expect(game.ships[0].getHitArray()).toStrictEqual([true]);
     // expect(game.ships[0].isSunk()).toBe(true)
-    console.log(game.ships[0])
-    console.log(game.boardArray)
-    console.log(game.ships[0].getHitArray())
+    // console.log(game.ships[0])
+    // console.log(game.boardArray)
+    // console.log(game.ships[0].getHitArray())
     expect(game.ships[0].isSunk()).toBe(true)
     expect(game.allShipsSunk()).toBe(true)
+})
+
+test("blabla", () => {
+    let game = Gameboard()
+    game.ships.forEach((ship, i) => {
+        game.placeShipsRandomly(ship, i)
+    });
+    console.log(game.boardArray)
 })

@@ -28,9 +28,37 @@ const Gameboard = (ai = false) => {
             return true
         }
     }
-    const placeShipsRandomly = (horizontal = true) => {
-        
+    const placeShipsRandomly = (ship, index, horizontal = true) => {
+        let length = ship.getLength()
+        let startCoord;
+        if (horizontal) {
+            startCoord = getHorizontalCoords(length)
+            let symbol;
+            for(let i = 0; i < length; i++) {
+                symbol = "" + index + i
+                boardArray[startCoord + i] = symbol;
+                symbol = ""
+            }
+        }
     }
+    const getHorizontalCoords = (length) => { 
+        let coord = Math.floor(Math.random() * 100)
+        let checkIfAllSpotsValid = []
+        if (((coord % 10) + length) <= 10 ) {
+            for(let i = 0; i < length; i++) {
+               checkIfAllSpotsValid.push(boardArray[coord + i]) 
+            }
+            if(checkIfAllSpotsValid.every(spot => spot === false)) {
+                return coord;
+            }
+            else {
+              return getHorizontalCoords(length)
+            }
+        }
+        else {
+           return getHorizontalCoords(length)
+        }
+    } 
     const setIsHorizontal = (bool) => bool;
     const getMissedCount = () => missedCount
     const allShipsSunk = () => {
@@ -43,7 +71,7 @@ const Gameboard = (ai = false) => {
         // })
         // return true
     }
-    return {boardArray, setIsHorizontal, ships, receiveAttack, getMissedCount, allShipsSunk}
+    return {boardArray, setIsHorizontal, ships, receiveAttack, getMissedCount, allShipsSunk, placeShipsRandomly}
 }
 
 export default Gameboard
