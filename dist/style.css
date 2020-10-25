@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  border-style: border-box;
+}
+#content {
+  display: flex;
+}
+.cpuGrid {
+  background-color: cadetblue;
+}
+.playerGrid {
+  background-color: darkgrey;
+}
+
+.cpuGrid,
+.playerGrid {
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+  height: 400px;
+  margin: 20px;
+}
+.gridDiv {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+}

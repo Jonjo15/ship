@@ -1,1 +1,1 @@
-console.log("connected");
+(()=>{"use strict";let e={playerGrid:document.querySelector(".playerGrid"),cpuGrid:document.querySelector(".cpuGrid")};function t(e){for(let t=0;t<100;t++){let d=document.createElement("div");d.classList.add("gridDiv"),d.dataset.id=t,d.addEventListener("click",(e=>{console.log(e.target.dataset.id)})),e.appendChild(d)}}t(e.playerGrid),t(e.cpuGrid)})();
