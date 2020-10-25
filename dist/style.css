@@ -3,6 +3,9 @@
   padding: 0;
   border-style: border-box;
 }
+h1 {
+  text-align: center;
+}
 #content {
   display: flex;
 }
@@ -12,9 +15,13 @@
 .playerGrid {
   background-color: darkgrey;
 }
+.selectShipsGrid {
+  background-color: darkolivegreen;
+}
 
 .cpuGrid,
-.playerGrid {
+.playerGrid,
+.selectShipsGrid {
   display: flex;
   flex-wrap: wrap;
   width: 400px;
