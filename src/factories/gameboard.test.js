@@ -75,10 +75,19 @@ test("All ships sunk(2)", () => {
     expect(game.allShipsSunk()).toBe(true)
 })
 
-test("blabla", () => {
+test("All ships sunk if all positions attacked", () => {
     let game = Gameboard()
     game.ships.forEach((ship, i) => {
         game.placeShipsRandomly(ship, i)
     });
+    for(let i = 0; i< 99; i++) {
+        game.receiveAttack(i)
+    }
+    //console.log(game.boardArray)
+    expect(game.allShipsSunk()).toBe(true)
+})
+test("all vertical works", () => {
+    let game = Gameboard()
+    game.aiPlaceShips()
     console.log(game.boardArray)
 })

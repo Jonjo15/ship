@@ -20,8 +20,12 @@ const Gameboard = (ai = false) => {
             return false
         }
         else if (typeof boardArray[xy] === "string") {
+           
+            // console.log(boardArray[xy])
+            // console.log(boardArray[xy].slice(-1))
+            // console.log(boardArray[xy].slice(-2, -1)) 
             let targetShipPart = parseInt(boardArray[xy].slice(-1))
-            let shipTarget = parseInt(boardArray[xy].slice(0,1))
+            let shipTarget = parseInt(boardArray[xy].slice(-2, -1))
             let targetedShip = ships[shipTarget]
             targetedShip.hit(targetShipPart);
             boardArray[xy] = "hit"
@@ -35,9 +39,20 @@ const Gameboard = (ai = false) => {
             startCoord = getHorizontalCoords(length)
             let symbol;
             for(let i = 0; i < length; i++) {
-                symbol = "" + index + i
+                symbol = ""+ (startCoord+i) + "-" + index + i
                 boardArray[startCoord + i] = symbol;
                 symbol = ""
+            }
+        }
+        else {
+            startCoord = getVerticalCoords(length);
+            let symbol;
+            for(let i = 0; i < length; i++) {
+                let adder = i * 10;
+                symbol = ""+ (startCoord + adder) + "-" + index + i;
+                boardArray[startCoord + adder] = symbol;
+                symbol = ""
+                //finish
             }
         }
     }
@@ -61,8 +76,27 @@ const Gameboard = (ai = false) => {
     } 
     const getVerticalCoords = (length) => {
         let reducer = (length -1)*10
-        let coord = Math.floor(Math.random() * 100 - reducer)
+        let coord = Math.floor(Math.random() * 100 - reducer);
+        let checkIfAllSpotsValid = [];
+        for (let i = 0; i < length; i++) {
+            let multiplier = i * 10;
+            checkIfAllSpotsValid.push(boardArray[coord + multiplier]);
+        }
+        if(checkIfAllSpotsValid.every(spot => spot === false)) {
+            return coord;
+        }
+        else {
+            return getVerticalCoords(length)
+        }
         //finish
+    }
+    const aiPlaceShips = () => {
+        const vertHoriz = [true, false]
+        ships.forEach((ship, i) => {
+            let directionIndex = Math.floor(Math.random() * vertHoriz.length);
+            let direction = vertHoriz[directionIndex];
+            placeShipsRandomly(ship, i, direction);
+        })
     }
     const setIsHorizontal = (bool) => bool;
     const getMissedCount = () => missedCount
@@ -76,7 +110,7 @@ const Gameboard = (ai = false) => {
         // })
         // return true
     }
-    return {boardArray, setIsHorizontal, ships, receiveAttack, getMissedCount, allShipsSunk, placeShipsRandomly}
+    return {boardArray, setIsHorizontal, ships, receiveAttack, getMissedCount, allShipsSunk, placeShipsRandomly, aiPlaceShips}
 }
 
 export default Gameboard
