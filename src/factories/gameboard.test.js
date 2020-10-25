@@ -86,8 +86,8 @@ test("All ships sunk if all positions attacked", () => {
     //console.log(game.boardArray)
     expect(game.allShipsSunk()).toBe(true)
 })
-test("all vertical works", () => {
-    let game = Gameboard()
-    game.aiPlaceShips()
-    console.log(game.boardArray)
-})
+// test("all vertical works", () => {
+//     let game = Gameboard()
+//     game.aiPlaceShips()
+//     console.log(game.boardArray)
+// })
