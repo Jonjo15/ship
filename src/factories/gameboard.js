@@ -12,7 +12,7 @@ const Gameboard = (ai = false) => {
     // boardArray = boardArray.map((ele, i) => i)
     const receiveAttack = (xy) => {
         if (boardArray[xy] === "miss" || boardArray[xy] === "hit") {
-            return
+            return 0;
         }
         if (boardArray[xy] === false) {
             boardArray[xy] = "miss"
