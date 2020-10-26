@@ -1,12 +1,14 @@
 import selectDom from "./selectDom"
 import bindEvents from "./events"
-import game from "./factories/gameloop"
+
 import Ship from "./factories/ship"
 import Gameboard from "./factories/gameboard"
 import Player from "./factories/player"
+import game from "./factories/gameloop"
 let dom = selectDom()
 fillGrid(dom.playerGrid)
 fillGrid(dom.cpuGrid)
+// console.log(dom.startBtn)
 bindEvents();
 //
 // dom.playerGrid.style.backgroundColor = "grey"

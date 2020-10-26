@@ -6,6 +6,13 @@
 h1 {
   text-align: center;
 }
+.emptySquare,
+.aiSquare {
+  background-color: darkturquoise;
+}
+.shipPart {
+  background-color: firebrick;
+}
 #content {
   display: flex;
 }
