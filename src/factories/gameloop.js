@@ -1,6 +1,6 @@
 import Player from "./player"
 import render from "../render"
-import selectDom from "../selectDom"
+import {elements} from "../selectDom"
 const game = (() => {
     
     let gameOver = false;
@@ -11,7 +11,6 @@ const game = (() => {
     let playersArray = [player1, player2]
     let winner;
     let rendered = false;
-    let dom = selectDom()
     // console.log(dom.playerSquares)
     const checkForWin = () => {
         if (player1.gameboard.allShipsSunk()) {
@@ -30,18 +29,18 @@ const game = (() => {
             let result = player2.getLastResult();
             let lastCoord = player2.getLastAiAttempt();
             if (result) {
-                console.log(dom.playerSquares)
-                dom.playerSquares[lastCoord].textContent = "X"
+                console.log(document.querySelectorAll(".playerGrid"))
+                elements.playerSquares[lastCoord].textContent = "X"
                 // player1.gameboard.boardArray[lastCoord].textContent = "X"//PROMINIT OVO
                 
             }
             else {
-                dom.playerSquares[lastCoord].textContent = "miss"
+                elements.playerSquares[lastCoord].textContent = "miss"
                 // player1.gameboard.boardArray[lastCoord].textContent = "miss"
             }
             //set coordinate of players gameboard to result
             player1.setTurn(true)
-            //renderPlayerBoard()
+            
         }
         else {
             player2.gameboard.receiveAttack(coord)
