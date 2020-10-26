@@ -1,5 +1,13 @@
 import selectDom from "./selectDom"
-let dom = selectDom();
+import bindEvents from "./events"
+import game from "./factories/gameloop"
+import Ship from "./factories/ship"
+import Gameboard from "./factories/gameboard"
+import Player from "./factories/player"
+let dom = selectDom()
+fillGrid(dom.playerGrid)
+fillGrid(dom.cpuGrid)
+bindEvents();
 //
 // dom.playerGrid.style.backgroundColor = "grey"
 // dom.cpuGrid.style.backgroundColor = "aqua"
@@ -9,11 +17,13 @@ function fillGrid(parent) {
         let div = document.createElement("div")
         div.classList.add("gridDiv")
         div.dataset.id = i;
-        div.addEventListener("click", (e) => {
-            console.log(e.target.dataset.id) //it's a string
-        })
+        // if (parent.classList.contains("cpuGrid")) {
+        //     div.addEventListener("click", (e) => {
+        //         console.log(e.target.dataset.id)
+        //         //playRound(+e.target.dataset.id)
+        //     })
+        // }
+        
         parent.appendChild(div)
     }
 }
-fillGrid(dom.playerGrid)
-fillGrid(dom.cpuGrid)
