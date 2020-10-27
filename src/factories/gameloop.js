@@ -42,9 +42,12 @@ const game = (() => {
             player1.setTurn(true)
             
         }
-        else {
-            player2.gameboard.receiveAttack(coord)
-            player1.setTurn(false)
+        else if (player1.getTurn()){
+            let result = player2.gameboard.receiveAttack(coord)
+            if (typeof result === "boolean") {
+                    player1.setTurn(false)
+            }
+            
             //renderCpuBoard()
         }
         checkForWin();

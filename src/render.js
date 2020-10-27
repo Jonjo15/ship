@@ -1,6 +1,7 @@
 import {elements} from "./selectDom"
 const render = () => {
     // let dom = selectDom()
+    console.log(elements)
     const renderStart = (p1,p2) => {
         // console.log(p1, p2)
         p1.gameboard.boardArray.forEach((element,i) => {

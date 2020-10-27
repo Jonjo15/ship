@@ -6,12 +6,20 @@ import Gameboard from "./factories/gameboard"
 import Player from "./factories/player"
 import game from "./factories/gameloop"
 // let dom = selectDom()
+let dom = Object.assign(elements)
+
+
+// console.log(elements.playerGrid)
 fillGrid(elements.playerGrid)
 fillGrid(elements.cpuGrid)
+dom.aiSquares = document.querySelectorAll(".cpuGrid div");
+dom.playerSquares = document.querySelectorAll(".playerGrid div")
+// console.log(dom)
+// console.log(elements.aiSquares)
 // elements = selectelements()
 // console.log(elements.startBtn)
 bindEvents();
-elements.startBtn.addEventListener("click", (e) => {
+dom.startBtn.addEventListener("click", (e) => {
     game.gameLoop()
 })
 //
