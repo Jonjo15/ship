@@ -5,6 +5,7 @@ export const elements = (() => {
     playerSquares: document.querySelectorAll(".playerGrid div"),
     aiSquares: document.querySelectorAll(".cpuGrid div"),
     cpuGrid: document.querySelector(".cpuGrid"),
-    startBtn: document.querySelector("#startBtn")
+    startBtn: document.querySelector("#startBtn"),
+    info: document.querySelector(".info")
 }
 })()

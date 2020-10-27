@@ -1,6 +1,7 @@
 //napraviti event handlere
 import {elements} from "./selectDom"
-import game from "./factories/gameloop"
+import Game from "./factories/gameloop"
+import {game} from "./index"
 // SelectDom.cpuSquares.addEventListener("click", (e) => console.log(e.target.dataset.id))
 const bindEvents = () => {
     // let dom = SelectDom()

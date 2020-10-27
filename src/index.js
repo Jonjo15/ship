@@ -4,24 +4,20 @@ import bindEvents from "./events"
 import Ship from "./factories/ship"
 import Gameboard from "./factories/gameboard"
 import Player from "./factories/player"
-import game from "./factories/gameloop"
+import Game from "./factories/gameloop"
 // let dom = selectDom()
 let dom = Object.assign(elements)
-
-
-// console.log(elements.playerGrid)
 fillGrid(elements.playerGrid)
 fillGrid(elements.cpuGrid)
 dom.aiSquares = document.querySelectorAll(".cpuGrid div");
 dom.playerSquares = document.querySelectorAll(".playerGrid div")
-// console.log(dom)
-// console.log(elements.aiSquares)
-// elements = selectelements()
-// console.log(elements.startBtn)
+let game;
 bindEvents();
 dom.startBtn.addEventListener("click", (e) => {
+    game = Game()
     game.gameLoop()
-})
+    dom.startBtn.style.display = "none";
+});
 //
 // elements.playerGrid.style.backgroundColor = "grey"
 // elements.cpuGrid.style.backgroundColor = "aqua"
@@ -41,3 +37,4 @@ function fillGrid(parent) {
         parent.appendChild(div)
     }
 }
+export {game}

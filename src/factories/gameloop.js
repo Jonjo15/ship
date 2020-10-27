@@ -1,7 +1,7 @@
 import Player from "./player"
 import render from "../render"
 import {elements} from "../selectDom"
-const game = (() => {
+const Game = () => {
     let playCoord;
     let gameOver = false;
     let player1 = Player();
@@ -23,27 +23,35 @@ const game = (() => {
         }
     }
     const playerAttack = (coord) => {
+        // let result = player2.gameboard.receiveAttack(coord)
         if (!player1.getTurn()) {
             return
         }
-        console.log(elements.aiSquares)
         let result = player2.gameboard.receiveAttack(coord)
         if (result === 0) {
-            return false //mozda zajebe
+            return
         }
+        // let result = player2.gameboard.receiveAttack(coord)
+        //     return false //mozda zajebe
+        // }if (result === 0) {
+        
         if (result) {
             elements.aiSquares[coord].textContent ="X"
-            
+            player1.setTurn(false)
+            elements.info.textContent ="Ai turn"
+            setTimeout(() => playTurnAi(), 1000)
             return true
         }
         else if(!result) {
+            player1.setTurn(false)
             elements.aiSquares[coord].textContent ="miss"
-            
+            elements.info.textContent ="Ai turn"
+            setTimeout(() => playTurnAi(), 1000)
             return true
         }
     }
 
-    const playTurn = (coord) => {
+    const playTurnAi = () => {
         if (!player1.getTurn()) {
             player2.computerMakeRandomPlay(player1.gameboard)
             let result = player2.getLastResult();
@@ -53,10 +61,12 @@ const game = (() => {
                 elements.playerSquares[lastCoord].textContent = "X"
                 // player1.gameboard.boardArray[lastCoord].textContent = "X"//PROMINIT OVO
                 player1.setTurn(true)
+                elements.info.textContent= "Your turn"
             }
             else {
                 elements.playerSquares[lastCoord].textContent = "miss"
                 player1.setTurn(true)
+                elements.info.textContent= "Your turn"
                 // player1.gameboard.boardArray[lastCoord].textContent = "miss"
             }
             //set coordinate of players gameboard to result
@@ -87,16 +97,14 @@ const game = (() => {
             render().renderStart(player1, player2)
             rendered = true
         }
-        while(!gameOver) {
-            playTurn()
-        }
+        
         //nesto dodati
     }
     const getGameOver = () => gameOver
     const reset = () => {
 
     }
-    return {gameLoop, reset, checkForWin, playTurn, getGameOver, playerAttack}
-})()
+    return {gameLoop, reset, checkForWin, playTurnAi, getGameOver, playerAttack}
+}
 
-export default game
+export default Game
