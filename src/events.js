@@ -8,11 +8,11 @@ const bindEvents = () => {
 
     elements.aiSquares.forEach(element => {
         element.addEventListener("click", (e) => {
-            console.log(e.target.dataset.id)
+            // console.log(e.target.dataset.id)
             game.playerAttack(+e.target.dataset.id)
         })
     });
-
+    elements.resetBtn.addEventListener("click", (e) => game.reset())
     // elements.startBtn.addEventListener("click", (e) => {
     //     game.gameLoop()
     // })

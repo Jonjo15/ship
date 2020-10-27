@@ -1,6 +1,7 @@
 import Player from "./player"
 import render from "../render"
 import {elements} from "../selectDom"
+import { game } from "..";
 const Game = () => {
     let playCoord;
     let gameOver = false;
@@ -16,15 +17,18 @@ const Game = () => {
         if (player1.gameboard.allShipsSunk()) {
             winner = "CPU"
             gameOver = true;
+            return true;
         }
         else if (player2.gameboard.allShipsSunk()) {
             winner = "YOU"
             gameOver = true;
+            return true;
         }
+        return false
     }
     const playerAttack = (coord) => {
         // let result = player2.gameboard.receiveAttack(coord)
-        if (!player1.getTurn()) {
+        if (!player1.getTurn() || gameOver) {
             return
         }
         let result = player2.gameboard.receiveAttack(coord)
@@ -38,9 +42,15 @@ const Game = () => {
         if (result) {
             elements.aiSquares[coord].textContent ="X"
             player1.setTurn(false)
-            elements.info.textContent ="Ai turn"
-            setTimeout(() => playTurnAi(), 1000)
-            return true
+            if (!checkForWin()) {
+                elements.info.textContent ="Ai turn"
+                setTimeout(() => playTurnAi(), 1000)
+                return true
+            }
+            else {
+                elements.info.textContent = winner + " won"
+            }
+            
         }
         else if(!result) {
             player1.setTurn(false)
@@ -60,8 +70,14 @@ const Game = () => {
                 // console.log(document.querySelectorAll(".playerGrid"))
                 elements.playerSquares[lastCoord].textContent = "X"
                 // player1.gameboard.boardArray[lastCoord].textContent = "X"//PROMINIT OVO
-                player1.setTurn(true)
-                elements.info.textContent= "Your turn"
+                if (!checkForWin()) {
+                    player1.setTurn(true)
+                    elements.info.textContent= "Your turn"
+                }
+                else {
+                    elements.info.textContent = winner + " won"
+                }
+               
             }
             else {
                 elements.playerSquares[lastCoord].textContent = "miss"
@@ -90,7 +106,18 @@ const Game = () => {
         // }
         checkForWin();
     }
-
+    const removeClassesFromSquaresAndText = (squares) => {
+        
+        squares.forEach((square) => {
+            square.textContent = ""
+            let list =square.classList
+            list.forEach((cls) => {
+                if(cls !== "gridDiv" && typeof cls === "string") {
+                    square.classList.remove(cls)
+                }
+            })
+        })
+    }
     const gameLoop = () => {
         //renderShips
         if (!rendered) {
@@ -102,7 +129,13 @@ const Game = () => {
     }
     const getGameOver = () => gameOver
     const reset = () => {
-
+        removeClassesFromSquaresAndText(elements.aiSquares)
+        removeClassesFromSquaresAndText(elements.playerSquares)
+        // player1 = Player();
+        // player2 = Player(true);
+        // player1.gameboard.aiPlaceShips()
+        // player2.gameboard.aiPlaceShips()
+        elements.startBtn.style.display ="block"
     }
     return {gameLoop, reset, checkForWin, playTurnAi, getGameOver, playerAttack}
 }

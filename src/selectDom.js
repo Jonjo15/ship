@@ -6,6 +6,7 @@ export const elements = (() => {
     aiSquares: document.querySelectorAll(".cpuGrid div"),
     cpuGrid: document.querySelector(".cpuGrid"),
     startBtn: document.querySelector("#startBtn"),
-    info: document.querySelector(".info")
+    info: document.querySelector(".info"),
+    resetBtn: document.getElementById("resetBtn")
 }
 })()
