@@ -107,7 +107,6 @@ const Game = () => {
         checkForWin();
     }
     const removeClassesFromSquaresAndText = (squares) => {
-        
         squares.forEach((square) => {
             square.textContent = ""
             let list =square.classList
@@ -135,7 +134,8 @@ const Game = () => {
         // player2 = Player(true);
         // player1.gameboard.aiPlaceShips()
         // player2.gameboard.aiPlaceShips()
-        elements.startBtn.style.display ="block"
+        elements.startBtn.style.display ="inline-block"
+        elements.resetBtn.style.display = "none"
     }
     return {gameLoop, reset, checkForWin, playTurnAi, getGameOver, playerAttack}
 }

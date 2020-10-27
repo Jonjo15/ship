@@ -17,6 +17,7 @@ dom.startBtn.addEventListener("click", (e) => {
     game = Game()
     game.gameLoop()
     dom.startBtn.style.display = "none";
+    dom.resetBtn.style.display = "inline-block"
 });
 //
 // elements.playerGrid.style.backgroundColor = "grey"
