@@ -8,7 +8,7 @@ const bindEvents = () => {
     elements.aiSquares.forEach(element => {
         element.addEventListener("click", (e) => {
             console.log(e.target.dataset.id)
-            game.playTurn(+e.target.dataset.id)
+            game.playerAttack(+e.target.dataset.id)
         })
     });
 
