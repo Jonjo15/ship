@@ -20,7 +20,7 @@ const render = () => {
                
             }
             else if (typeof element === "string") {
-                elements.aiSquares[i].classList.add("shipPart")
+                elements.aiSquares[i].classList.add("emptySquare")
                 elements.aiSquares[i].dataset.shipId = element;
             }
         })

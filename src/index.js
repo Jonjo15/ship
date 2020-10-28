@@ -26,7 +26,7 @@ dom.startBtn.addEventListener("click", (e) => {
 function fillGrid(parent) {
     for(let i = 0; i < 100; i++) {
         let div = document.createElement("div")
-        div.classList.add("gridDiv")
+        // div.classList.add("gridDiv")
         div.dataset.id = i;
         // if (parent.classList.contains("cpuGrid")) {
         //     div.addEventListener("click", (e) => {

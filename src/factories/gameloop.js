@@ -40,7 +40,7 @@ const Game = () => {
         // }if (result === 0) {
         
         if (result) {
-            elements.aiSquares[coord].textContent ="X"
+            elements.aiSquares[coord].classList.add("hit") 
             player1.setTurn(false)
             if (!checkForWin()) {
                 elements.info.textContent ="Ai turn"
@@ -54,7 +54,7 @@ const Game = () => {
         }
         else if(!result) {
             player1.setTurn(false)
-            elements.aiSquares[coord].textContent ="miss"
+            elements.aiSquares[coord].classList.add("miss")
             elements.info.textContent ="Ai turn"
             setTimeout(() => playTurnAi(), 1000)
             return true
@@ -68,7 +68,7 @@ const Game = () => {
             let lastCoord = player2.getLastAiAttempt();
             if (result) {
                 // console.log(document.querySelectorAll(".playerGrid"))
-                elements.playerSquares[lastCoord].textContent = "X"
+                elements.playerSquares[lastCoord].classList.add("hit")
                 // player1.gameboard.boardArray[lastCoord].textContent = "X"//PROMINIT OVO
                 if (!checkForWin()) {
                     player1.setTurn(true)
@@ -80,7 +80,7 @@ const Game = () => {
                
             }
             else {
-                elements.playerSquares[lastCoord].textContent = "miss"
+                elements.playerSquares[lastCoord].classList.add("miss")
                 player1.setTurn(true)
                 elements.info.textContent= "Your turn"
                 // player1.gameboard.boardArray[lastCoord].textContent = "miss"
@@ -108,13 +108,15 @@ const Game = () => {
     }
     const removeClassesFromSquaresAndText = (squares) => {
         squares.forEach((square) => {
-            square.textContent = ""
-            let list =square.classList
-            list.forEach((cls) => {
-                if(cls !== "gridDiv" && typeof cls === "string") {
-                    square.classList.remove(cls)
-                }
-            })
+            square.className = ""
+            // square.textContent = ""
+            // let list =square.classList
+            // list.forEach((cls) => {
+            //     square.classList.remove(cls)
+            // })
+            // square.classList.add("gridDiv")
+
+            // square.classList.add("gridDiv")
         })
     }
     const gameLoop = () => {
@@ -134,8 +136,10 @@ const Game = () => {
         // player2 = Player(true);
         // player1.gameboard.aiPlaceShips()
         // player2.gameboard.aiPlaceShips()
+        gameOver = false;
         elements.startBtn.style.display ="inline-block"
         elements.resetBtn.style.display = "none"
+        elements.info.textContent = "Your turn"
     }
     return {gameLoop, reset, checkForWin, playTurnAi, getGameOver, playerAttack}
 }
