@@ -4,6 +4,9 @@ const render = () => {
     console.log(elements)
     const renderStart = (p1,p2) => {
         // console.log(p1, p2)
+        elements.info.textContent ="Your Turn"
+        elements.remShipsPlayer.textContent ="Your ship positions left: " + p1.gameboard.getRemainingShips()
+        elements.remShipsAi.textContent ="Computer's ship positions left: "+ p2.gameboard.getRemainingShips()
         p1.gameboard.boardArray.forEach((element,i) => {
             if (!element) {
                 elements.playerSquares[i].classList.add("emptySquare")

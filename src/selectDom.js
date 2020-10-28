@@ -7,6 +7,8 @@ export const elements = (() => {
     cpuGrid: document.querySelector(".cpuGrid"),
     startBtn: document.querySelector("#startBtn"),
     info: document.querySelector(".info"),
-    resetBtn: document.getElementById("resetBtn")
+    resetBtn: document.getElementById("resetBtn"),
+    remShipsPlayer: document.querySelector(".remShipsPlayer"),
+    remShipsAi: document.querySelector(".remShipsAi"),
 }
 })()

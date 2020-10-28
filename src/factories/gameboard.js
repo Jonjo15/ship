@@ -2,6 +2,7 @@ import Ship from "./ship"
 const Gameboard = (ai = false) => {
     const ships = [];
     let missedCount = 0;
+    let remainingShips = 15;
     for(let i = 1; i < 6; i++) {
         ships.push(Ship(i))
     }
@@ -29,6 +30,7 @@ const Gameboard = (ai = false) => {
             let targetedShip = ships[shipTarget]
             targetedShip.hit(targetShipPart);
             boardArray[xy] = "hit"
+            remainingShips -= 1;
             return true
         }
     }
@@ -98,6 +100,7 @@ const Gameboard = (ai = false) => {
             placeShipsRandomly(ship, i, direction);
         })
     }
+    const getRemainingShips = () => remainingShips;
     const setIsHorizontal = (bool) => bool;
     const getMissedCount = () => missedCount
     const allShipsSunk = () => {
@@ -110,7 +113,7 @@ const Gameboard = (ai = false) => {
         // })
         // return true
     }
-    return {boardArray, setIsHorizontal, ships, receiveAttack, getMissedCount, allShipsSunk, placeShipsRandomly, aiPlaceShips}
+    return {boardArray, setIsHorizontal, ships, receiveAttack, getMissedCount, allShipsSunk, placeShipsRandomly, aiPlaceShips, getRemainingShips}
 }
 
 export default Gameboard

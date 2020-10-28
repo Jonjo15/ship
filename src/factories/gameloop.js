@@ -44,6 +44,7 @@ const Game = () => {
             player1.setTurn(false)
             if (!checkForWin()) {
                 elements.info.textContent ="Ai turn"
+                elements.remShipsAi.textContent ="Computer's ship positions left: "+ player2.gameboard.getRemainingShips()
                 setTimeout(() => playTurnAi(), 1000)
                 return true
             }
@@ -71,6 +72,7 @@ const Game = () => {
             if (result) {
                 // console.log(document.querySelectorAll(".playerGrid"))
                 elements.playerSquares[lastCoord].classList.add("hit")
+                elements.remShipsPlayer.textContent = "Your ship positions left: " + player1.gameboard.getRemainingShips()
                 // player1.gameboard.boardArray[lastCoord].textContent = "X"//PROMINIT OVO
                 if (!checkForWin()) {
                     player1.setTurn(true)
@@ -143,6 +145,9 @@ const Game = () => {
         // player1.gameboard.aiPlaceShips()
         // player2.gameboard.aiPlaceShips()
         gameOver = false;
+        elements.info.textContent = ""
+        elements.remShipsPlayer.textContent = ""
+        elements.remShipsAi.textContent = ""
         elements.startBtn.style.display ="inline-block"
         elements.resetBtn.style.display = "none"
         elements.playerGrid.classList.remove("gameOver")
