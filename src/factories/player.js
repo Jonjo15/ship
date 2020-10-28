@@ -29,7 +29,8 @@ const Player = (ai=false) => {
         }
         else if(result) {
             // setTurn(false);
-            potentialGuesses = [coord+1, coord-1, coord + 10, coord -10].filter((ele) =>  isValid(ele));
+            let addPotentialGuesses = [coord+1, coord-1, coord + 10, coord -10].filter((ele) =>  isValid(ele));
+            addPotentialGuesses.forEach(ele => potentialGuesses.push(ele))
             lastResult = result;
             lastAiAttempt = coord 
             previousAiAttempts.push(lastAiAttempt)

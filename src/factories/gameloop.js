@@ -48,6 +48,8 @@ const Game = () => {
                 return true
             }
             else {
+                elements.playerGrid.classList.add("gameOver")
+                elements.cpuGrid.classList.add("gameOver")
                 elements.info.textContent = winner + " won"
             }
             
@@ -109,6 +111,10 @@ const Game = () => {
     const removeClassesFromSquaresAndText = (squares) => {
         squares.forEach((square) => {
             square.className = ""
+            if (square.hasAttribute("data-ship-id")) {
+                square.removeAttribute("data-ship-id")
+            }
+            
             // square.textContent = ""
             // let list =square.classList
             // list.forEach((cls) => {
@@ -139,6 +145,8 @@ const Game = () => {
         gameOver = false;
         elements.startBtn.style.display ="inline-block"
         elements.resetBtn.style.display = "none"
+        elements.playerGrid.classList.remove("gameOver")
+        elements.cpuGrid.classList.remove("gameOver")
         elements.info.textContent = "Your turn"
     }
     return {gameLoop, reset, checkForWin, playTurnAi, getGameOver, playerAttack}
