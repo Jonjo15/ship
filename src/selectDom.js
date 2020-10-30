@@ -10,5 +10,6 @@ export const elements = (() => {
     resetBtn: document.getElementById("resetBtn"),
     remShipsPlayer: document.querySelector(".remShipsPlayer"),
     remShipsAi: document.querySelector(".remShipsAi"),
+    selectGrid: document.querySelector(".selectShipsGrid"),
 }
 })()

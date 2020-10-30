@@ -131,6 +131,7 @@ const Game = () => {
         //renderShips
         if (!rendered) {
             render().renderStart(player1, player2)
+            render().renderDraggables(player1)
             rendered = true
         }
         

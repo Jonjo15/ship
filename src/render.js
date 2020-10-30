@@ -12,7 +12,7 @@ const render = () => {
                 elements.playerSquares[i].classList.add("emptySquare")
             }
             else if (typeof element === "string") {
-                elements.playerSquares[i].classList.add("shipPart")
+                elements.playerSquares[i].classList.add("ship" + (parseInt(element.slice(-2, -1)) +1))
                 elements.playerSquares[i].dataset.shipId = element;
             }
         });
@@ -28,6 +28,27 @@ const render = () => {
             }
         })
     }
-    return {renderStart}
+     const renderDraggables = (p1) => {
+         console.log(p1)
+        p1.gameboard.ships.forEach((ship, i) => {
+            elements.selectGrid.appendChild(makeDivContainer(ship.getLength()))
+        })
+
+     }
+     const makeDivContainer = (length) => {
+         let div = document.createElement("div");
+         div.classList.add("shipContainerHorizontal");
+         div.classList.add("ship" + length)
+         div.dataset.id = (length-1);
+         div.style.width = "" + (30 * length) + "px";
+         div.setAttribute('draggable', true);
+         for(let i = 0; i< length; i++) {
+             let shipDiv = document.createElement("div");
+             shipDiv.dataset.id = "" + length + (i-1)
+             div.appendChild(shipDiv)
+         }
+         return div;
+     }
+    return {renderStart, renderDraggables}
 }
 export default render

@@ -64,3 +64,24 @@ h1 {
 .gameOver {
   opacity: 0.75;
 }
+.shipContainerHorizontal {
+  margin: 20px;
+  background-color: pink;
+  height: 30px;
+  display: flex;
+}
+.ship1 {
+  background-color: blueviolet;
+}
+.ship2 {
+  background-color: chartreuse;
+}
+.ship3 {
+  background-color: darkgoldenrod;
+}
+.ship4 {
+  background-color: rgb(68, 143, 105);
+}
+.ship5 {
+  background-color: red;
+}
