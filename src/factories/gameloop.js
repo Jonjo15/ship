@@ -131,7 +131,8 @@ const Game = () => {
         //renderShips
         if (!rendered) {
             render().renderStart(player1, player2)
-            render().renderDraggables(player1)
+            render().renderDraggables(player1);
+            // elements.directionBtn.addEventListener("click", (e) => console.log(elements.selectShips))
             rendered = true
         }
         

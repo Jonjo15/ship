@@ -2,12 +2,15 @@ import Gameboard from "./gameboard"
 const Player = (ai=false) => {
     let gameboard = Gameboard(ai)
     let turn;
+    let horizontal = true;
     let previousAiAttempts = [];
     let potentialGuesses = [];
     const isAi = () => ai;
     ai ? turn = false: turn = true
     const getTurn = () => turn
     const setTurn = (bool) => turn = bool;
+    const getHorizontal = () => horizontal;
+    const setHorizontal = (bool) => horizontal = bool;
     let lastAiAttempt;
     let lastResult;
     const getLastAiAttempt = () => lastAiAttempt;
@@ -43,7 +46,7 @@ const Player = (ai=false) => {
             return true;
         }
     }
-    return {isAi, getTurn, setTurn, gameboard, computerMakeRandomPlay, getLastAiAttempt, getLastResult}
+    return {isAi, getTurn, setTurn, gameboard, computerMakeRandomPlay, getLastAiAttempt, getLastResult, getHorizontal, setHorizontal}
 }
 
 export default Player

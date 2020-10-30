@@ -13,6 +13,8 @@ const bindEvents = () => {
         })
     });
     elements.resetBtn.addEventListener("click", (e) => game.reset())
+
+    elements.directionBtn.addEventListener("click", (e) => console.log(elements.selectShips))
     // elements.startBtn.addEventListener("click", (e) => {
     //     game.gameLoop()
     // })

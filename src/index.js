@@ -12,14 +12,15 @@ fillGrid(elements.cpuGrid)
 dom.aiSquares = document.querySelectorAll(".cpuGrid div");
 dom.playerSquares = document.querySelectorAll(".playerGrid div")
 let game;
-bindEvents();
+
 dom.startBtn.addEventListener("click", (e) => {
-    game = Game()
-    game.gameLoop()
+    game = Game();
+    game.gameLoop();
     dom.startBtn.style.display = "none";
     dom.resetBtn.style.display = "inline-block"
 });
 //
+bindEvents();
 // elements.playerGrid.style.backgroundColor = "grey"
 // elements.cpuGrid.style.backgroundColor = "aqua"
 

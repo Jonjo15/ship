@@ -35,6 +35,9 @@ const render = () => {
         })
 
      }
+     const changeShipDirection = () => {
+         
+     }
      const makeDivContainer = (length) => {
          let div = document.createElement("div");
          div.classList.add("shipContainerHorizontal");

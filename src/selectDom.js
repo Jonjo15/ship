@@ -11,5 +11,7 @@ export const elements = (() => {
     remShipsPlayer: document.querySelector(".remShipsPlayer"),
     remShipsAi: document.querySelector(".remShipsAi"),
     selectGrid: document.querySelector(".selectShipsGrid"),
+    directionBtn: document.querySelector("#directionBtn"),
+    selectShips: [...document.querySelectorAll(".selectShipsGrid div")].filter(ele => ele.hasAttribute("draggable"))
 }
 })()
