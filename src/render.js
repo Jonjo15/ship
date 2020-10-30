@@ -1,9 +1,11 @@
 import {elements} from "./selectDom"
 const render = () => {
     // let dom = selectDom()
-    console.log(elements)
+    
     const renderStart = (p1,p2) => {
         // console.log(p1, p2)
+        renderDraggables(p1);
+        // elements.directionBtn.addEventListener("click", (e) =>console.log(elements.selectShips))
         elements.info.textContent ="Your Turn"
         elements.remShipsPlayer.textContent ="Your ship positions left: " + p1.gameboard.getRemainingShips()
         elements.remShipsAi.textContent ="Computer's ship positions left: "+ p2.gameboard.getRemainingShips()
@@ -33,10 +35,24 @@ const render = () => {
         p1.gameboard.ships.forEach((ship, i) => {
             elements.selectGrid.appendChild(makeDivContainer(ship.getLength()))
         })
+        elements.selectShips = [...document.querySelectorAll(".selectShipsGrid div")].filter(ele => ele.hasAttribute("draggable"))
 
      }
      const changeShipDirection = () => {
-         
+         elements.selectShips.forEach((div, i) => {
+             if (div.classList.contains("shipContainerHorizontal")) {
+                 div.classList.remove("shipContainerHorizontal")
+                 div.classList.add("shipContainerVertical")
+                 div.style.height = "" + 30 * (i+1) + "px"
+                 div.style.width = "30px"
+             }
+             else {
+                div.classList.remove("shipContainerVertical")
+                div.classList.add("shipContainerHorizontal")
+                div.style.width = "" + 30 * (i+1) + "px"
+                div.style.height = "30px"
+             }
+         })
      }
      const makeDivContainer = (length) => {
          let div = document.createElement("div");
@@ -45,13 +61,13 @@ const render = () => {
          div.dataset.id = (length-1);
          div.style.width = "" + (30 * length) + "px";
          div.setAttribute('draggable', true);
-         for(let i = 0; i< length; i++) {
+         for(let i = 0; i < length; i++) {
              let shipDiv = document.createElement("div");
-             shipDiv.dataset.id = "" + length + (i-1)
+             shipDiv.dataset.id = "" + length + "" + (i)
              div.appendChild(shipDiv)
          }
          return div;
      }
-    return {renderStart, renderDraggables}
+    return {renderStart, changeShipDirection}
 }
 export default render

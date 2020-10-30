@@ -131,17 +131,23 @@ const Game = () => {
         //renderShips
         if (!rendered) {
             render().renderStart(player1, player2)
-            render().renderDraggables(player1);
+            
             // elements.directionBtn.addEventListener("click", (e) => console.log(elements.selectShips))
             rendered = true
         }
         
         //nesto dodati
     }
+    const removeSelectShips = () => {
+        elements.selectShips.forEach(ship => {
+            ship.remove()
+        })
+    }
     const getGameOver = () => gameOver
     const reset = () => {
         removeClassesFromSquaresAndText(elements.aiSquares)
         removeClassesFromSquaresAndText(elements.playerSquares)
+        removeSelectShips()
         // player1 = Player();
         // player2 = Player(true);
         // player1.gameboard.aiPlaceShips()

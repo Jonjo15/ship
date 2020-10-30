@@ -11,6 +11,7 @@ fillGrid(elements.playerGrid)
 fillGrid(elements.cpuGrid)
 dom.aiSquares = document.querySelectorAll(".cpuGrid div");
 dom.playerSquares = document.querySelectorAll(".playerGrid div")
+
 let game;
 
 dom.startBtn.addEventListener("click", (e) => {
