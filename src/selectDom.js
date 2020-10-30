@@ -12,6 +12,7 @@ export const elements = (() => {
     remShipsAi: document.querySelector(".remShipsAi"),
     selectGrid: document.querySelector(".selectShipsGrid"),
     directionBtn: document.querySelector("#directionBtn"),
-    selectShips: [...document.querySelectorAll(".selectShipsGrid div")].filter(ele => ele.hasAttribute("draggable"))
+    selectShips: [...document.querySelectorAll(".selectShipsGrid div")].filter(ele => ele.hasAttribute("draggable")),
+    autoPlaceBtn: document.getElementById("autoPlace")
 }
 })()

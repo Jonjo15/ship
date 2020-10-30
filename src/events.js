@@ -16,6 +16,10 @@ const bindEvents = () => {
     elements.resetBtn.addEventListener("click", (e) => game.reset())
 
     elements.directionBtn.addEventListener("click", (e) => render().changeShipDirection())
+    elements.autoPlaceBtn.addEventListener("click", (e) => {
+        render().autoRenderPlayer(game.player1)
+        elements.autoPlaceBtn.style.display ="none"
+    })
     // elements.startBtn.addEventListener("click", (e) => {
     //     game.gameLoop()
     // })

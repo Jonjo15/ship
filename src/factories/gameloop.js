@@ -71,6 +71,7 @@ const Game = () => {
             let lastCoord = player2.getLastAiAttempt();
             if (result) {
                 // console.log(document.querySelectorAll(".playerGrid"))
+                elements.playerSquares[lastCoord].className =""
                 elements.playerSquares[lastCoord].classList.add("hit")
                 elements.remShipsPlayer.textContent = "Your ship positions left: " + player1.gameboard.getRemainingShips()
                 // player1.gameboard.boardArray[lastCoord].textContent = "X"//PROMINIT OVO
@@ -79,6 +80,8 @@ const Game = () => {
                     elements.info.textContent= "Your turn"
                 }
                 else {
+                    elements.playerGrid.classList.add("gameOver")
+                    elements.cpuGrid.classList.add("gameOver")
                     elements.info.textContent = winner + " won"
                 }
                
@@ -157,12 +160,14 @@ const Game = () => {
         elements.remShipsPlayer.textContent = ""
         elements.remShipsAi.textContent = ""
         elements.startBtn.style.display ="inline-block"
+        elements.directionBtn.style.display = "inline-block"
+        elements.autoPlaceBtn.style.display = "inline-block"
         elements.resetBtn.style.display = "none"
         elements.playerGrid.classList.remove("gameOver")
         elements.cpuGrid.classList.remove("gameOver")
         elements.info.textContent = "Your turn"
     }
-    return {gameLoop, reset, checkForWin, playTurnAi, getGameOver, playerAttack}
+    return {gameLoop, reset, checkForWin, playTurnAi, getGameOver, playerAttack, player1}
 }
 
 export default Game
