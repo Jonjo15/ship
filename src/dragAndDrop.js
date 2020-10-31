@@ -1,5 +1,6 @@
 import {elements} from "./selectDom"
 import {game} from "./index"
+import { parse } from "@babel/core";
 
 export const dragAndDrop = () => {
     let currentShipLength;
@@ -63,9 +64,11 @@ export const dragAndDrop = () => {
             // }
         }
         else{
+            console.log(e.target)
             let diff = ((currentShipLength -1) - selectedShipPartIndex) * 10
-            endPosition = parseInt(e.target.dataset.id) - diff
-            console.log(endPosition)
+            let landingIndex = parseInt(e.target.dataset.id)
+            // console.log(landingIndex)
+            // console.log(endPosition)
         }
     }
 
