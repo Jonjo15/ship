@@ -1,6 +1,6 @@
 import {elements} from "./selectDom"
 import bindEvents from "./events"
-
+import {dragAndDrop} from "./dragAndDrop"
 import Ship from "./factories/ship"
 import Gameboard from "./factories/gameboard"
 import Player from "./factories/player"
@@ -19,6 +19,7 @@ dom.startBtn.addEventListener("click", (e) => {
     game.gameLoop();
     dom.startBtn.style.display = "none";
     dom.resetBtn.style.display = "inline-block"
+    dragAndDrop()
 });
 //
 bindEvents();
