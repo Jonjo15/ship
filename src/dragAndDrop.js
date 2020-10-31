@@ -3,13 +3,20 @@ import {game} from "./index"
 
 export const dragAndDrop = () => {
     let currentShipLength;
-    let selectedShipPart;
+    let selectedShipPartIndex;
+    let endPosition;
+    let isHorizontal;
     elements.selectShips.forEach(ship => {
         ship.addEventListener("dragstart", (e) => {
             currentShipLength = parseInt(e.target.dataset.id) + 1
+            ship.classList.contains("shipContainerHorizontal") ? isHorizontal = true : isHorizontal = false;
             // console.log(currentShipLength)
         } )
-        ship.childNodes.forEach(shipPart => shipPart.addEventListener("mousedown", (e) => console.log(e.target.dataset.id)))
+        ship.childNodes.forEach(shipPart => shipPart.addEventListener("mousedown", (e) => {
+            selectedShipPartIndex = parseInt(e.target.dataset.id.slice(-1))
+            // selectedShipLastIndex = selectedShipPartIndex
+            console.log(selectedShipPartIndex)
+        }))
         
     })
     elements.playerSquares.forEach(square => {
@@ -38,7 +45,28 @@ export const dragAndDrop = () => {
         
     }
     const dragDrop = (e) => {
-        console.log(e.target.dataset.id)
+        if (isHorizontal) {
+            let diff = (currentShipLength -1) - selectedShipPartIndex
+            let landingIndex = parseInt(e.target.dataset.id)
+            if (diff + (landingIndex % 10) < 10) {
+                console.log("success")
+            }
+            else {
+                console.log("fail")
+            }
+            // endPosition = parseInt(e.target.dataset.id) + diff
+            // if ((currentShipLength + endPosition % 10) <= 10) {
+            //     console.log("success")
+            // }
+            // else { //zavrsit ovo
+            //     console.log("fail")
+            // }
+        }
+        else{
+            let diff = ((currentShipLength -1) - selectedShipPartIndex) * 10
+            endPosition = parseInt(e.target.dataset.id) - diff
+            console.log(endPosition)
+        }
     }
 
 }
