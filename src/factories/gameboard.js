@@ -2,6 +2,7 @@ import Ship from "./ship"
 const Gameboard = (ai = false) => {
     const ships = [];
     let missedCount = 0;
+    let numOfPlayersShipPlaced = 0;
     let remainingShips = 15;
     for(let i = 1; i < 6; i++) {
         ships.push(Ship(i))
@@ -33,6 +34,9 @@ const Gameboard = (ai = false) => {
             remainingShips -= 1;
             return true
         }
+    }
+    const placePlayersShip = (x) => {
+
     }
     const placeShipsRandomly = (ship, index, horizontal = true) => {
         let length = ship.getLength()

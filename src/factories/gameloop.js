@@ -5,9 +5,10 @@ import { game } from "..";
 const Game = () => {
     let playCoord;
     let gameOver = false;
+    let gameReady = false;
     let player1 = Player();
     let player2 = Player(true);
-    player1.gameboard.aiPlaceShips()
+    //player1.gameboard.aiPlaceShips()
     player2.gameboard.aiPlaceShips()
     let playersArray = [player1, player2]
     let winner;
