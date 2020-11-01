@@ -54,6 +54,24 @@ const Gameboard = (ai = false) => {
                 return false
             }
         }
+        else {
+            let checkIfAllSpotsValid = []
+            for(let i = 0; i< length; i++) {
+                checkIfAllSpotsValid.push(boardArray[x + i*10])
+            }
+            if (checkIfAllSpotsValid.every(spot => spot === false)) {
+                let symbol;
+                for(let i = 0; i <length; i++) {
+                    symbol = ""+ (x+i*10) + "-" + (length-1) + i
+                    boardArray[x + (i*10)] = symbol
+                    symbol = ""
+                }
+                return true
+            }
+            else {
+                return false;
+            }
+        }
     }
     const placeShipsRandomly = (ship, index, horizontal = true) => {
         let length = ship.getLength()

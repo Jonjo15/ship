@@ -81,9 +81,10 @@ export const dragAndDrop = () => {
             let lowerEdge = (99 - (currentShipLength -1) * 10)
             if (landingIndex >= 0 && landingIndex <= lowerEdge) {
                 console.log("success")
-                let success = game.player1.gameboard.placePlayersShip(landingIndex, false)
+                let success = game.player1.gameboard.placePlayersShip(landingIndex, currentShipLength, false)
                 if (success) {
                     selectedShipDiv.remove()
+                    render().autoRenderPlayer(game.player1)
                 }
                 
             }
