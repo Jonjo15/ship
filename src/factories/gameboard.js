@@ -117,7 +117,7 @@ const Gameboard = (ai = false) => {
         // })
         // return true
     }
-    return {boardArray, setIsHorizontal, ships, receiveAttack, getMissedCount, allShipsSunk, placeShipsRandomly, aiPlaceShips, getRemainingShips}
+    return {boardArray, setIsHorizontal, ships, receiveAttack, getMissedCount, allShipsSunk, placeShipsRandomly, aiPlaceShips, getRemainingShips, placePlayersShip}
 }
 
 export default Gameboard

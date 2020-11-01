@@ -5,10 +5,13 @@ import {game} from "./index"
 export const dragAndDrop = () => {
     let currentShipLength;
     let selectedShipPartIndex;
+    let selectedShipDiv;
     let endPosition;
     let isHorizontal;
     elements.selectShips.forEach(ship => {
         ship.addEventListener("dragstart", (e) => {
+            selectedShipDiv = e.target
+            console.log(selectedShipDiv)
             currentShipLength = parseInt(e.target.dataset.id) + 1
             ship.classList.contains("shipContainerHorizontal") ? isHorizontal = true : isHorizontal = false;
             // console.log(currentShipLength)
@@ -16,7 +19,7 @@ export const dragAndDrop = () => {
         ship.childNodes.forEach(shipPart => shipPart.addEventListener("mousedown", (e) => {
             selectedShipPartIndex = parseInt(e.target.dataset.id.slice(-1))
             // selectedShipLastIndex = selectedShipPartIndex
-            console.log(selectedShipPartIndex)
+            // console.log(selectedShipPartIndex)
         }))
         
     })
@@ -51,6 +54,11 @@ export const dragAndDrop = () => {
             let landingIndex = parseInt(e.target.dataset.id)
             if (diff + (landingIndex % 10) < 10) {
                 console.log("success")
+                let success = game.player1.gameboard.placePlayersShip(landingIndex, true)
+                if (success) {
+                    selectedShipDiv.remove()
+                }
+                
             }
             else {
                 console.log("fail")
@@ -64,9 +72,20 @@ export const dragAndDrop = () => {
             // }
         }
         else{
-            console.log(e.target)
-            let diff = ((currentShipLength -1) - selectedShipPartIndex) * 10
-            let landingIndex = parseInt(e.target.dataset.id)
+            let diff = selectedShipPartIndex * 10
+            let landingIndex = parseInt(e.target.dataset.id) -diff
+            let lowerEdge = (99 - (currentShipLength -1) * 10)
+            if (landingIndex >= 0 && landingIndex <= lowerEdge) {
+                console.log("success")
+                let success = game.player1.gameboard.placePlayersShip(landingIndex, false)
+                if (success) {
+                    selectedShipDiv.remove()
+                }
+                
+            }
+            else {
+                console.log("fail")
+            }
             // console.log(landingIndex)
             // console.log(endPosition)
         }
