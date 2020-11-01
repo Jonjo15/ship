@@ -1,5 +1,6 @@
 import {elements} from "./selectDom"
 import {game} from "./index"
+import render from "./render";
 
 
 export const dragAndDrop = () => {
@@ -53,10 +54,13 @@ export const dragAndDrop = () => {
             let diff = (currentShipLength -1) - selectedShipPartIndex
             let landingIndex = parseInt(e.target.dataset.id)
             if (diff + (landingIndex % 10) < 10) {
-                console.log("success")
-                let success = game.player1.gameboard.placePlayersShip(landingIndex, true)
+                // console.log("success")
+                // console.log(game.player1.gameboard.placePlayersShip(landingIndex, currentShipLength, true))
+                let success = game.player1.gameboard.placePlayersShip(landingIndex, currentShipLength, true)
                 if (success) {
+                    console.log("success")
                     selectedShipDiv.remove()
+                    render().autoRenderPlayer(game.player1)
                 }
                 
             }
