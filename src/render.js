@@ -34,6 +34,15 @@ const render = () => {
         console.log(elements.playerSquares)
         elements.playerSquares.forEach(square => square.classList.add("emptySquare"))
     }
+    const renderPlayerShip =(p1, length) => {
+        p1.gameboard.boardArray.forEach((element, i) => {
+            if (typeof element === "string" && !elements.playerSquares[i].hasAttribute("data-ship-id")) {
+                elements.playerSquares[i].className =""
+                elements.playerSquares[i].classList.add("ship" + length)
+                elements.playerSquares[i].dataset.shipId = element;
+            }
+        })
+    }
     const autoRenderPlayer = (p1) => {
         p1.gameboard.boardArray.forEach((element,i) => {
             if (!element) {
@@ -83,6 +92,6 @@ const render = () => {
          }
          return div;
      }
-    return {renderStart, changeShipDirection, autoRenderPlayer, renderPlayerEmptyBoard}
+    return {renderStart, changeShipDirection, autoRenderPlayer, renderPlayerEmptyBoard, renderPlayerShip}
 }
 export default render

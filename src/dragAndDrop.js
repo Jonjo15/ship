@@ -51,21 +51,25 @@ export const dragAndDrop = () => {
     }
     const dragDrop = (e) => {
         if (isHorizontal) {
+            console.log(currentShipLength)
             let diff = selectedShipPartIndex 
             let landingIndex = parseInt(e.target.dataset.id) - diff
             if (currentShipLength + (landingIndex % 10) <= 10) {
                 // console.log("success")
                 // console.log(game.player1.gameboard.placePlayersShip(landingIndex, currentShipLength, true))
+                // console.log(currentShipLength)
                 let success = game.player1.gameboard.placePlayersShip(landingIndex, currentShipLength, true)
                 if (success) {
                     console.log("success")
                     selectedShipDiv.remove()
-                    render().autoRenderPlayer(game.player1)
+                    render().renderPlayerShip(game.player1, currentShipLength)
                     elements.autoPlaceBtn.style.display = "none"
                     numShipsPlaced += 1;
                     if (numShipsPlaced === 5) {
                         elements.directionBtn.style.display = "none"
                         elements.selectGrid.style.display = "none"
+                        removeEventListeners()
+                        resetVars()
                     }
                 }
                 
@@ -87,15 +91,18 @@ export const dragAndDrop = () => {
             let lowerEdge = (99 - (currentShipLength -1) * 10)
             if (landingIndex >= 0 && landingIndex <= lowerEdge) {
                 console.log("success")
+                // console.log(currentShipLength)
                 let success = game.player1.gameboard.placePlayersShip(landingIndex, currentShipLength, false)
                 if (success) {
                     selectedShipDiv.remove()
-                    render().autoRenderPlayer(game.player1)
+                    render().renderPlayerShip(game.player1, currentShipLength)
                     elements.autoPlaceBtn.style.display = "none"
                     numShipsPlaced += 1;
                     if (numShipsPlaced === 5) {
                         elements.directionBtn.style.display = "none"
                         elements.selectGrid.style.display = "none"
+                        removeEventListeners()
+                        resetVars()
                     }
                 }
                 
@@ -106,6 +113,13 @@ export const dragAndDrop = () => {
             // console.log(landingIndex)
             // console.log(endPosition)
         }
+    }
+    const resetVars = () => {
+         currentShipLength = null;
+         selectedShipPartIndex = null;
+         selectedShipDiv = null;
+         numShipsPlaced = 0;
+         isHorizontal = null;
     }
     const removeEventListeners = () => {
         elements.playerSquares.forEach(square => {
@@ -121,5 +135,5 @@ export const dragAndDrop = () => {
             // })
         })
     }
-    return {removeEventListeners}
+    // return {removeEventListeners}
 }

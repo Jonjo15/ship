@@ -19,13 +19,13 @@ const Game = () => {
         if (player1.gameboard.allShipsSunk()) {
             winner = "CPU"
             gameOver = true;
-            dragAndDrop().removeEventListeners()
+            
             return true;
         }
         else if (player2.gameboard.allShipsSunk()) {
             winner = "YOU"
             gameOver = true;
-            dragAndDrop().removeEventListeners()
+            
             return true;
         }
         return false
