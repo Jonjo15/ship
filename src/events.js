@@ -28,4 +28,18 @@ const bindEvents = () => {
     //     game.gameLoop()
     // })
 }
+export const removeEventListeners = () => {
+    elements.playerSquares.forEach(square => {
+        square.removeEventListener("dragenter",(e) => dragEnter(e))
+        square.removeEventListener("dragleave",(e) => dragLeave(e))
+        square.removeEventListener("drop",(e) => dragDrop(e))
+        square.removeEventListener("dragover", function(event) {
+            event.preventDefault();
+          });
+        square.removeEventListener("dragend",(e) => dragEnd(e))
+        // square.addEventListener("click", (e) => {
+        //     console.log(e.target)
+        // })
+    })
+}
 export default bindEvents

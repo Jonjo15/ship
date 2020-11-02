@@ -30,7 +30,11 @@ const render = () => {
             }
         })
     }
-     const autoRenderPlayer = (p1) => {
+    const renderPlayerEmptyBoard = () => {
+        console.log(elements.playerSquares)
+        elements.playerSquares.forEach(square => square.classList.add("emptySquare"))
+    }
+    const autoRenderPlayer = (p1) => {
         p1.gameboard.boardArray.forEach((element,i) => {
             if (!element) {
                 elements.playerSquares[i].classList.add("emptySquare")
@@ -79,6 +83,6 @@ const render = () => {
          }
          return div;
      }
-    return {renderStart, changeShipDirection, autoRenderPlayer}
+    return {renderStart, changeShipDirection, autoRenderPlayer, renderPlayerEmptyBoard}
 }
 export default render

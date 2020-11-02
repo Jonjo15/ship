@@ -51,9 +51,9 @@ export const dragAndDrop = () => {
     }
     const dragDrop = (e) => {
         if (isHorizontal) {
-            let diff = (currentShipLength -1) - selectedShipPartIndex
-            let landingIndex = parseInt(e.target.dataset.id)
-            if (diff + (landingIndex % 10) < 10) {
+            let diff = selectedShipPartIndex 
+            let landingIndex = parseInt(e.target.dataset.id) - diff
+            if (currentShipLength + (landingIndex % 10) <= 10) {
                 // console.log("success")
                 // console.log(game.player1.gameboard.placePlayersShip(landingIndex, currentShipLength, true))
                 let success = game.player1.gameboard.placePlayersShip(landingIndex, currentShipLength, true)
@@ -107,5 +107,19 @@ export const dragAndDrop = () => {
             // console.log(endPosition)
         }
     }
-
+    const removeEventListeners = () => {
+        elements.playerSquares.forEach(square => {
+            square.removeEventListener("dragenter",(e) => dragEnter(e))
+            square.removeEventListener("dragleave",(e) => dragLeave(e))
+            square.removeEventListener("drop",(e) => dragDrop(e))
+            square.removeEventListener("dragover", function(event) {
+                event.preventDefault();
+              });
+            square.removeEventListener("dragend",(e) => dragEnd(e))
+            // square.addEventListener("click", (e) => {
+            //     console.log(e.target)
+            // })
+        })
+    }
+    return {removeEventListeners}
 }

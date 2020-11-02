@@ -1,6 +1,7 @@
 import Player from "./player"
 import render from "../render"
 import {elements} from "../selectDom"
+import {dragAndDrop} from "../dragAndDrop"
 import { game } from "..";
 const Game = () => {
     let playCoord;
@@ -18,11 +19,13 @@ const Game = () => {
         if (player1.gameboard.allShipsSunk()) {
             winner = "CPU"
             gameOver = true;
+            dragAndDrop().removeEventListeners()
             return true;
         }
         else if (player2.gameboard.allShipsSunk()) {
             winner = "YOU"
             gameOver = true;
+            dragAndDrop().removeEventListeners()
             return true;
         }
         return false
@@ -134,8 +137,9 @@ const Game = () => {
     const gameLoop = () => {
         //renderShips
         if (!rendered) {
-            render().renderStart(player1, player2)
-            
+            let rend = render()
+            rend.renderStart(player1, player2)
+            rend.renderPlayerEmptyBoard()
             // elements.directionBtn.addEventListener("click", (e) => console.log(elements.selectShips))
             rendered = true
         }
