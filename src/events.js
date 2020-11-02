@@ -17,8 +17,12 @@ const bindEvents = () => {
 
     elements.directionBtn.addEventListener("click", (e) => render().changeShipDirection())
     elements.autoPlaceBtn.addEventListener("click", (e) => {
+        game.player1.gameboard.aiPlaceShips()
         render().autoRenderPlayer(game.player1)
+        elements.selectShips.forEach(ship => ship.remove())
+        elements.directionBtn.style.display = "none"
         elements.autoPlaceBtn.style.display ="none"
+        elements.selectGrid.style.display = "none"
     })
     // elements.startBtn.addEventListener("click", (e) => {
     //     game.gameLoop()

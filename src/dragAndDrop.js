@@ -7,7 +7,7 @@ export const dragAndDrop = () => {
     let currentShipLength;
     let selectedShipPartIndex;
     let selectedShipDiv;
-    let endPosition;
+    let numShipsPlaced = 0;
     let isHorizontal;
     elements.selectShips.forEach(ship => {
         ship.addEventListener("dragstart", (e) => {
@@ -61,6 +61,12 @@ export const dragAndDrop = () => {
                     console.log("success")
                     selectedShipDiv.remove()
                     render().autoRenderPlayer(game.player1)
+                    elements.autoPlaceBtn.style.display = "none"
+                    numShipsPlaced += 1;
+                    if (numShipsPlaced === 5) {
+                        elements.directionBtn.style.display = "none"
+                        elements.selectGrid.style.display = "none"
+                    }
                 }
                 
             }
@@ -85,6 +91,12 @@ export const dragAndDrop = () => {
                 if (success) {
                     selectedShipDiv.remove()
                     render().autoRenderPlayer(game.player1)
+                    elements.autoPlaceBtn.style.display = "none"
+                    numShipsPlaced += 1;
+                    if (numShipsPlaced === 5) {
+                        elements.directionBtn.style.display = "none"
+                        elements.selectGrid.style.display = "none"
+                    }
                 }
                 
             }

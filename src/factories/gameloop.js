@@ -164,6 +164,7 @@ const Game = () => {
         elements.directionBtn.style.display = "inline-block"
         elements.autoPlaceBtn.style.display = "inline-block"
         elements.resetBtn.style.display = "none"
+        elements.selectGrid.style.display = "flex"
         elements.playerGrid.classList.remove("gameOver")
         elements.cpuGrid.classList.remove("gameOver")
         elements.info.textContent = "Your turn"

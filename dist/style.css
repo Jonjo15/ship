@@ -103,6 +103,7 @@ h1 {
 .ship5 {
   background-color: red;
 }
-#directionBtn {
+#directionBtn,
+#autoPlace {
   display: none;
 }

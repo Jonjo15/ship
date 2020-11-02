@@ -19,6 +19,7 @@ dom.startBtn.addEventListener("click", (e) => {
     game.gameLoop();
     dom.startBtn.style.display = "none";
     dom.resetBtn.style.display = "inline-block"
+    elements.autoPlaceBtn.style.display = "inline-block"
     dragAndDrop()
 });
 //
