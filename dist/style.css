@@ -5,6 +5,7 @@
 }
 body {
   font-family: fantasy;
+  background-color: darkolivegreen;
 }
 h1 {
   text-align: center;
@@ -51,7 +52,7 @@ h1 {
   margin-right: 100px;
 }
 .selectShipsGrid {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   width: 500px;
   height: 300px;

@@ -14,6 +14,7 @@ export const dragAndDrop = () => {
             selectedShipDiv = e.target
             console.log(selectedShipDiv)
             currentShipLength = parseInt(e.target.dataset.id) + 1
+            console.log(currentShipLength)
             ship.classList.contains("shipContainerHorizontal") ? isHorizontal = true : isHorizontal = false;
             // console.log(currentShipLength)
         } )
@@ -60,7 +61,7 @@ export const dragAndDrop = () => {
                 // console.log(currentShipLength)
                 let success = game.player1.gameboard.placePlayersShip(landingIndex, currentShipLength, true)
                 if (success) {
-                    console.log("success")
+                    // console.log("success")
                     selectedShipDiv.remove()
                     render().renderPlayerShip(game.player1, currentShipLength)
                     elements.autoPlaceBtn.style.display = "none"
@@ -70,6 +71,7 @@ export const dragAndDrop = () => {
                         elements.selectGrid.style.display = "none"
                         removeEventListeners()
                         resetVars()
+                        game.setReady(true)
                     }
                 }
                 
@@ -90,7 +92,7 @@ export const dragAndDrop = () => {
             let landingIndex = parseInt(e.target.dataset.id) -diff
             let lowerEdge = (99 - (currentShipLength -1) * 10)
             if (landingIndex >= 0 && landingIndex <= lowerEdge) {
-                console.log("success")
+                // console.log("success")
                 // console.log(currentShipLength)
                 let success = game.player1.gameboard.placePlayersShip(landingIndex, currentShipLength, false)
                 if (success) {
@@ -103,6 +105,7 @@ export const dragAndDrop = () => {
                         elements.selectGrid.style.display = "none"
                         removeEventListeners()
                         resetVars()
+                        game.setReady(true)
                     }
                 }
                 

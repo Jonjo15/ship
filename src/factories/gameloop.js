@@ -15,24 +15,29 @@ const Game = () => {
     let winner;
     let rendered = false;
     // console.log(dom.playerSquares)
+    const setReady = (bool) => {
+        gameReady = bool;
+    }
     const checkForWin = () => {
         if (player1.gameboard.allShipsSunk()) {
             winner = "CPU"
             gameOver = true;
-            
+            elements.remShipsPlayer.textContent = ""
+            elements.remShipsAi.textContent = ""
             return true;
         }
         else if (player2.gameboard.allShipsSunk()) {
             winner = "YOU"
             gameOver = true;
-            
+            elements.remShipsPlayer.textContent = ""
+            elements.remShipsAi.textContent = ""
             return true;
         }
         return false
     }
     const playerAttack = (coord) => {
         // let result = player2.gameboard.receiveAttack(coord)
-        if (!player1.getTurn() || gameOver) {
+        if (!player1.getTurn() || gameOver || !gameReady) {
             return
         }
         let result = player2.gameboard.receiveAttack(coord)
@@ -166,14 +171,15 @@ const Game = () => {
         elements.remShipsAi.textContent = ""
         elements.startBtn.style.display ="inline-block"
         elements.directionBtn.style.display = "inline-block"
-        elements.autoPlaceBtn.style.display = "inline-block"
+        elements.autoPlaceBtn.style.display = "none"
+        elements.selectGrid.style.display = "none"
         elements.resetBtn.style.display = "none"
-        elements.selectGrid.style.display = "flex"
+        // elements.selectGrid.style.display = "flex"
         elements.playerGrid.classList.remove("gameOver")
         elements.cpuGrid.classList.remove("gameOver")
         elements.info.textContent = "Your turn"
     }
-    return {gameLoop, reset, checkForWin, playTurnAi, getGameOver, playerAttack, player1}
+    return {gameLoop, reset, checkForWin, playTurnAi, getGameOver, playerAttack, player1, setReady}
 }
 
 export default Game
