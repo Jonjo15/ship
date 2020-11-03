@@ -21,6 +21,8 @@ dom.startBtn.addEventListener("click", (e) => {
     dom.resetBtn.style.display = "inline-block"
     elements.autoPlaceBtn.style.display = "inline-block"
     elements.selectGrid.style.display = "flex"
+    elements.playerGrid.style.display = "flex"
+    elements.cpuGrid.style.display = "flex"
     dragAndDrop()
 });
 //

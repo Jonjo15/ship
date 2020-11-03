@@ -17,6 +17,12 @@ const Game = () => {
     // console.log(dom.playerSquares)
     const setReady = (bool) => {
         gameReady = bool;
+        if (bool) {
+            elements.info.textContent = "Your turn"
+            elements.info.style.display = "block"
+            elements.remShipsPlayer.style.display = "block"
+            elements.remShipsAi.style.display = "block"
+        }
     }
     const checkForWin = () => {
         if (player1.gameboard.allShipsSunk()) {
@@ -166,18 +172,21 @@ const Game = () => {
         // player1.gameboard.aiPlaceShips()
         // player2.gameboard.aiPlaceShips()
         gameOver = false;
-        elements.info.textContent = ""
-        elements.remShipsPlayer.textContent = ""
-        elements.remShipsAi.textContent = ""
+        elements.info.style.display = "none"
+        elements.remShipsPlayer.style.display = "none"
+        elements.remShipsAi.style.display = "none"
         elements.startBtn.style.display ="inline-block"
         elements.directionBtn.style.display = "inline-block"
         elements.autoPlaceBtn.style.display = "none"
         elements.selectGrid.style.display = "none"
         elements.resetBtn.style.display = "none"
+        elements.playerGrid.style.display = "none"
+        elements.cpuGrid.style.display = "none"
         // elements.selectGrid.style.display = "flex"
         elements.playerGrid.classList.remove("gameOver")
         elements.cpuGrid.classList.remove("gameOver")
-        elements.info.textContent = "Your turn"
+        // elements.info.textContent = "Your turn"
+        elements.directionBtn.style.display = "none"
     }
     return {gameLoop, reset, checkForWin, playTurnAi, getGameOver, playerAttack, player1, setReady}
 }
